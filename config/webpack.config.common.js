@@ -22,7 +22,7 @@ const config = {
   },
 
   module: {
-    loaders: [
+    rules: [
       require('../lib/loaders/babel')(projectConfig.isAngularProject()),
       require('../lib/loaders/typescript')(projectConfig.isAngularProject()),
       require('../lib/loaders/images')(),

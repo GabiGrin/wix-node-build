@@ -17,7 +17,7 @@ const config = ({debug, separateCss = projectConfig.separateCss()} = {}) => {
     entry: getEntry(),
 
     module: {
-      loaders: [
+      rules: [
         require('../lib/loaders/sass')(extractCSS, cssModules, tpaStyle).client
       ]
     },

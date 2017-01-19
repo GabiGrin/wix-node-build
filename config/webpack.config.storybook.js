@@ -6,7 +6,7 @@ module.exports = config => {
     separateCss: false
   });
 
-  config.module.loaders = webpackClientConfig.module.loaders;
+  config.module.loaders = webpackClientConfig.module.rules;
 
   return config;
 };
