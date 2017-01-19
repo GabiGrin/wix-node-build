@@ -1,6 +1,7 @@
 'use strict';
 
 const webpack = require('webpack');
+const autoprefixer = require('autoprefixer');
 const path = require('path');
 const {mergeByConcat, isSingleEntry} = require('../lib/utils');
 const webpackConfigCommon = require('./webpack.config.common');
@@ -26,6 +27,12 @@ const config = ({debug, separateCss = projectConfig.separateCss()} = {}) => {
 
       new webpack.DefinePlugin({
         'process.env.NODE_ENV': debug ? '"development"' : '"production"'
+      }),
+
+      new webpack.LoaderOptionsPlugin({
+        options: {
+          postcss: [autoprefixer()],
+        }
       }),
 
       ...extractCSS ? [extractCSS] : [],
