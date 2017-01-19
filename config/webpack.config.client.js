@@ -23,7 +23,6 @@ const config = ({debug, separateCss = projectConfig.separateCss()} = {}) => {
     },
 
     plugins: [
-      new webpack.optimize.OccurenceOrderPlugin(),
       new DynamicPublicPath(),
 
       new webpack.DefinePlugin({
