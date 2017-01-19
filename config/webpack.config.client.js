@@ -30,6 +30,7 @@ const config = ({debug, separateCss = projectConfig.separateCss()} = {}) => {
       }),
 
       new webpack.LoaderOptionsPlugin({
+        test: /\.s?css$/,
         options: {
           postcss: [autoprefixer()],
           context: __dirname,
