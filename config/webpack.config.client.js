@@ -33,7 +33,9 @@ const config = ({debug, separateCss = projectConfig.separateCss()} = {}) => {
       ...extractCSS ? [extractCSS] : [],
 
       ...debug ? [] : [
-        new webpack.optimize.UglifyJsPlugin()
+        new webpack.optimize.UglifyJsPlugin({
+          sourceMap: true
+        })
       ]
     ],
 
