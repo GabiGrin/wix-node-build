@@ -14,7 +14,7 @@ const config = {
 
   resolve: {
     modules: [context],
-    extensions: ['', '.ts', '.js', '.tsx', '.jsx']
+    extensions: ['.ts', '.js', '.tsx', '.jsx']
   },
 
   resolveLoader: {
