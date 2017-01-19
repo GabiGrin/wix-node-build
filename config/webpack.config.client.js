@@ -2,7 +2,6 @@
 
 const webpack = require('webpack');
 const path = require('path');
-const autoprefixer = require('autoprefixer');
 const {mergeByConcat, isSingleEntry} = require('../lib/utils');
 const webpackConfigCommon = require('./webpack.config.common');
 const projectConfig = require('./project');
@@ -43,8 +42,6 @@ const config = ({debug, separateCss = projectConfig.separateCss()} = {}) => {
       filename: debug ? '[name].bundle.js' : '[name].bundle.min.js',
       pathinfo: debug
     },
-
-    postcss: () => [autoprefixer],
 
     target: 'web'
   });
