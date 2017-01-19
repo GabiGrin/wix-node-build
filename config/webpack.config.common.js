@@ -13,7 +13,7 @@ const config = {
   },
 
   resolve: {
-    modules: [context],
+    modules: [context, 'node_modules'],
     extensions: ['.ts', '.js', '.tsx', '.jsx']
   },
 
