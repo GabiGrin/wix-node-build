@@ -52,7 +52,9 @@ const config = ({debug, separateCss = projectConfig.separateCss()} = {}) => {
   function getExtractCss() {
     if (separateCss) {
       const ExtractTextPlugin = require('extract-text-webpack-plugin');
-      return new ExtractTextPlugin(debug ? '[name].css' : '[name].min.css');
+      return new ExtractTextPlugin({
+        filename: debug ? '[name].css' : '[name].min.css'
+      });
     }
   }
 };
