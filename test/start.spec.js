@@ -73,7 +73,7 @@ describe('Aggregator: start', () => {
       child = test
         .setup({
           'src/assets/image.png': '',
-          'index.js': `console.log('should not run');`,
+          'src/client.js': `console.log('should not run');`,
           'package.json': fx.packageJson({servers: {cdn: {port: 3005}}}),
           '.babelrc': '{}'
         })
@@ -117,7 +117,7 @@ describe('Aggregator: start', () => {
       child = test
         .setup({
           'src/assets/test.json': '{a: 1}',
-          'src/index.js': 'var a = 1;',
+          'src/client.js': 'var a = 1;',
           'package.json': fx.packageJson({servers: {cdn: {port: 3005}}})
         })
         .spawn('start');
@@ -129,7 +129,7 @@ describe('Aggregator: start', () => {
       child = test
         .setup({
           'src/assets/test.json': '{a: 1}',
-          'src/index.js': 'var a = 1;',
+          'src/client.js': 'var a = 1;',
           'package.json': fx.packageJson({servers: {cdn: {port: 3005, dir: 'dist/statics'}}})
         })
         .spawn('start');
@@ -141,7 +141,7 @@ describe('Aggregator: start', () => {
       child = test
         .setup({
           'node_modules/my-client-project/dist/test.json': '{a: 1}',
-          'src/index.js': 'var a = 1;',
+          'src/client.js': 'var a = 1;',
           'package.json': fx.packageJson({clientProjectName: 'my-client-project', servers: {cdn: {port: 3005}}})
         })
         .spawn('start');
@@ -153,7 +153,7 @@ describe('Aggregator: start', () => {
       child = test
         .setup({
           'node_modules/my-client-project/dist/statics/test.json': '{a: 1}',
-          'src/index.js': 'var a = 1;',
+          'src/client.js': 'var a = 1;',
           'package.json': fx.packageJson({clientProjectName: 'my-client-project', servers: {cdn: {port: 3005, dir: 'dist/statics'}}})
         })
         .spawn('start');
@@ -164,7 +164,8 @@ describe('Aggregator: start', () => {
     it('should support cross origin requests headers', () => {
       child = test
         .setup({
-          'package.json': fx.packageJson()
+          'package.json': fx.packageJson(),
+          'src/client.js': 'var a = 1;'
         })
         .spawn('start');
 
