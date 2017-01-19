@@ -18,7 +18,7 @@ const config = {
   },
 
   resolveLoader: {
-    root: path.join(__dirname, '..', 'node_modules')
+    modules: [path.join(__dirname, '..', 'node_modules')]
   },
 
   module: {
