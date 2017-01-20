@@ -732,7 +732,7 @@ describe('Aggregator: Build', () => {
     });
 
     it('should generate css modules on separate css file', () => {
-      const regex = /\.styles-my-file__a__.{5}\s.styles-my-file__b__.{5}\s{/;
+      const regex = /\.src-styles-my-file__a__.{5}\s.src-styles-my-file__b__.{5}\s{/;
       const res = test
           .setup({
             'src/client.js': 'require(\'./styles/my-file.scss\');',
@@ -748,7 +748,7 @@ describe('Aggregator: Build', () => {
     });
 
     it('should generate css modules as default', () => {
-      const regex = /\.styles-my-file__a__.{5}\s.styles-my-file__b__.{5}\s{/;
+      const regex = /\.src-styles-my-file__a__.{5}\s.src-styles-my-file__b__.{5}\s{/;
       const res = test
           .setup({
             'src/client.js': 'require(\'./styles/my-file.scss\');',

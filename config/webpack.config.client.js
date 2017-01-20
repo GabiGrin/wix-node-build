@@ -33,7 +33,7 @@ const config = ({debug, separateCss = projectConfig.separateCss()} = {}) => {
         test: /\.s?css$/,
         options: {
           postcss: [autoprefixer()],
-          context: __dirname,
+          context: ''
         }
       }),
 
@@ -42,6 +42,9 @@ const config = ({debug, separateCss = projectConfig.separateCss()} = {}) => {
       ...debug ? [] : [
         new webpack.optimize.UglifyJsPlugin({
           sourceMap: true
+        }),
+        new webpack.LoaderOptionsPlugin({
+          minimize: true
         })
       ]
     ],
