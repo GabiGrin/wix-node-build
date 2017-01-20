@@ -134,11 +134,11 @@ describe('Loaders', () => {
       beforeEach(() => setupAndBuild());
 
       it('should run sass and css loaders over imported .scss files', () => {
-        expect(test.content('dist/statics/app.bundle.js')).to.match(/"some-rule":"some-css__some-rule__\w{5}",([\s\S]*?)"child":"some-css__child__\w{5}"/);
+        expect(test.content('dist/statics/app.bundle.js')).to.match(/"some-rule":"src-some-css__some-rule__\w{5}",([\s\S]*?)"child":"some-css__child__\w{5}"/);
       });
 
       it('should also expose css classes as camelcase', () => {
-        expect(test.content('dist/statics/app.bundle.js')).to.match(/"someRule":"some-css__some-rule__\w{5}"/);
+        expect(test.content('dist/statics/app.bundle.js')).to.match(/"someRule":"src-some-css__some-rule__\w{5}"/);
       });
 
       it('should apply auto-prefixer', () => {
