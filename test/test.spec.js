@@ -185,7 +185,32 @@ describe('Aggregator: Test', () => {
       expect(res.stdout).to.contain('##teamcity[');
     });
 
-    it('should work load jest configuration and work with css', () => {
+    it('should load jest configuration from package.json', () => {
+      const res = test
+        .setup({
+          '__tests__/foo.js': `
+            describe('Foo', () => {
+              it('should pass', () => {
+              });
+            });
+          `,
+          'bar.js': `console.log('running bar');`,
+          'package.json': `{
+            "name": "a",\n
+            "jest": {
+              "setupFiles": [
+                "<rootDir>/bar.js"
+              ]
+            }
+          }`
+        })
+        .execute('test', ['--jest']);
+      console.log(res);
+      expect(res.code).to.equal(0);
+      expect(res.stdout).to.contain('running bar');
+    });
+
+    it('should use css obj proxy by default', () => {
       const res = test
         .setup({
           '__tests__/foo.js': `
@@ -207,11 +232,6 @@ describe('Aggregator: Test', () => {
           'foo.scss': `.a {.b {color: red;}}`,
           'package.json': `{
             "name": "a",\n
-            "jest": {
-              "moduleNameMapper": {
-                ".scss$": "identity-obj-proxy"
-              }
-            },
             "devDependencies": {
               "identity-obj-proxy": "^3.0.0"
             }
@@ -221,6 +241,28 @@ describe('Aggregator: Test', () => {
       console.log(res);
       expect(res.code).to.equal(0);
       expect(res.stderr).to.contain('1 passed');
+    });
+
+    it('should require "test/mocha-setup.js" configuration file if it exists', () => {
+      const res = test
+        .setup({
+          '__tests__/foo.js': `
+            describe('Foo', () => {
+              it('should pass', () => {
+              });
+            });
+          `,
+          'test/jest-setup.js': `console.log('jest setup');`,
+          'foo.js': `module.exports = function() {
+              // some implementation;
+            };`,
+          'package.json': fx.packageJson()
+        })
+        .execute('test', ['--jest']);
+      console.log(res);
+      expect(res.code).to.equal(0);
+      expect(res.stderr).to.contain('1 passed');
+      expect(res.stdout).to.contain('jest setup');
     });
   });
 
